@@ -1,7 +1,7 @@
 <?php
 include 'Search.php';
 try{
-	$s = new Search($_POST['search'],'people', [ 'exclude' =>['id','username'], 'include' => ['name', 'age']]);
+	$s = new Search($_POST['search'],'people', [ 'exclude' =>['id','username']]);
 }catch (Exception $e){
 	echo 'Cought Exception: '. $e->getMessage();
 }
