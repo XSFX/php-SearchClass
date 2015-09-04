@@ -31,7 +31,7 @@ class Search{
 	public function __construct($search, $table = null, $params = null){
 // 	print_r($params);
 		if(isset($params['include']) && isset($params['exclude'])){
-			//TODO error if enclude end exclide are both set;
+			
 			throw new Exception('Cannot set include end exclude ot the same time!');
 			
 			return;
