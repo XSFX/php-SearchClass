@@ -13,10 +13,9 @@ $s = new Search('Search Term','Table', [ '<include/exclude>' =>['table_column1',
 ```
 $s = new Search($_POST['search'],'people', [ 'exclude' =>['id','username']]);
 if($s->result){
-foreach($s->result as $result){
+	foreach($s->result as $result){
 		echo $result['name'].'  '.$result['age'] ;	
 	}
-	
 }else{
 	echo 'Nothing Found';
 }
