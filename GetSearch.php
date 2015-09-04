@@ -1,6 +1,9 @@
 <?php
 include 'Search.php';
-
-$s = new Search($_POST['search'],'people', [ 'exclude' =>['id','username']]);
+try{
+	$s = new Search($_POST['search'],'people', [ 'exclude' =>['id','username'], 'include' => ['name', 'age']]);
+}catch (Exception $e){
+	echo 'Cought Exception: '. $e->getMessage();
+}
 //   echo '<pre>'; print_r($s->searchParams); echo '</pre>';
-echo '<pre>'; print_r($s->result); echo '</pre>';
+echo '<pre>'; var_dump($s->result); echo '</pre>';

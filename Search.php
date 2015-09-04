@@ -15,7 +15,7 @@ class Search{
 		];
 	
 	private $searchParams; // search parameters from the form; needs to be private
-	public  $result; // result send as array;
+	public  $result = false; // result send as array;
 	private static $connection; // MySqli connection;
 	private static $count = 0; // make sure mysqli connecion is not initialized more than one time;
 	private $table;	// table in witch to search;
@@ -29,9 +29,11 @@ class Search{
 	 * $exclude - columns in witch not to search;
 	 */ 
 	public function __construct($search, $table = null, $params = null){
-		
+// 	print_r($params);
 		if(isset($params['include']) && isset($params['exclude'])){
 			//TODO error if enclude end exclide are both set;
+			throw new Exception('Cannot set include end exclude ot the same time!');
+			
 			return;
 		}
 		$this->params = $params;
@@ -66,6 +68,7 @@ class Search{
 	}
 	
 	private function findResults(){
+		
 		$i = 0;
 		foreach ($this->searchParams as $v){
 			if($i == 0 ){
@@ -81,6 +84,7 @@ class Search{
 		echo $query;
 		$result = mysqli_query(self::$connection,$query) or die(mysqli_error(self::$connection));
 		while($row = mysqli_fetch_assoc($result)){
+			
 			$this->result[] = $row;
 		}
 	}
@@ -112,7 +116,7 @@ class Search{
 				$column_names .= " , ' : ' , " . $column;
 			}
 		}
-		echo '<pre>'; print_r($column_names); echo '</pre>';
+// 		echo '<pre>'; print_r($column_names); echo '</pre>';
 		$this->columns = $column_names;
 	}
 	
