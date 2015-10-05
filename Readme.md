@@ -1,4 +1,4 @@
-#Simple PHP Search Library
+#Simple PHP Search Class
 
 ##Usage
 
